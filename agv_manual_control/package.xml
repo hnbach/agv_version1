@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>agv_manual_control</name>
+  <version>1.0.0</version>
+  <description>
+	  date: 2018-01-30
+	  contents: 
+	  - This package is used to publish the linear and angular velocity (cmd_vel) of AGV
+	  via "geometry_msgs/Twist". A reciever node is also created to test.
+	  - Current version: keyboard control by  up-down left-right
+	  - Next version: PS2 control
+	</description>
+  <author email = "nbhoang@t-robotics.co.kr"> Hoang, Ngoc-Bach</author>
+  <maintainer email = "nbhoang@t-robotics.co.kr">Hoang, Ngoc-Bach</maintainer>
+  <license>t-robotics.co.kr</license>
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_export_depend>roscpp</build_export_depend>
+  <build_export_depend>std_msgs</build_export_depend>
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+</package>

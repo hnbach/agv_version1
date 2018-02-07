@@ -1,0 +1,210 @@
+<?xml version = "1.0"?>
+<sdf version = "1.6">
+	<model name = "m_agv">
+		<static>false</static>
+		<link name = "chassis">
+			<pose> 0 0 0.1 0 0 0</pose>
+			<collision name = "collision">
+				<geometry>
+					<box>
+						<size> 0.4 0.2 0.1 </size>
+					</box>
+				</geometry>
+			</collision>
+			<visual name = "visual">
+				<geometry>
+					<box>
+						<size> 0.4 0.2 0.1 </size>
+					</box>
+				</geometry>
+			</visual>
+			<collision name = "caster_collision">
+				<pose> -0.15 0 -0.05 0 0 0 </pose>
+				<geometry>
+					<sphere>
+						<radius>0.05</radius>
+					</sphere>
+				</geometry>
+				<surface>
+					<friction>
+						<ode>
+							<mu1>0</mu1>
+							<mu2>0</mu2>
+							<slip1>1.0</slip1>
+							<slip2>1.0</slip2>
+						</ode>
+					</friction>
+				</surface>
+			</collision>
+			<visual name = 'caster_visual'>
+				<pose> -0.15 0 -0.05 0 0 0</pose>
+				<geometry>
+					<sphere>
+						<radius>0.05</radius>
+					</sphere>
+				</geometry>
+			</visual>
+		</link>
+		<link name = "left_wheel">
+			<pose>0.1 0.13 0.1 0 1.5707 1.5707</pose>
+			<collision name = "collision">
+				<geometry>
+					<cylinder>
+						<radius>0.1</radius>
+						<length>0.05</length>
+					</cylinder>
+				</geometry>
+			</collision>
+			<visual name = "visual">
+				<geometry>
+					<cylinder>
+						<radius>0.1</radius>
+						<length>0.05</length>
+					</cylinder>
+				</geometry>
+			</visual>
+		</link>
+		<link name = "right_wheel">
+			<pose>0.1 -0.13 0.1 0 1.5707 1.5707</pose>
+			<collision name = "collision">
+				<geometry>
+					<cylinder>
+						<radius>0.1</radius>
+						<length>0.05</length>
+					</cylinder>
+				</geometry>
+			</collision>
+			<visual name = "visual">
+				<geometry>
+					<cylinder>
+						<radius>0.1</radius>
+						<length>0.05</length>
+					</cylinder>
+				</geometry>
+			</visual>
+		</link>
+		
+		<joint type = "revolute" name = "left_wheel_hinge">
+			<pose> 0 0 -0.03 0 0 0</pose>
+			<child>left_wheel</child>
+			<parent>chassis</parent>
+			<axis>
+				<xyz>0 1 0</xyz>
+			</axis>
+		</joint>
+		<joint type = "revolute" name = "right_wheel_hinge">
+			<pose> 0 0 0.03 0 0 0</pose>
+			<child>right_wheel</child>
+			<parent>chassis</parent>
+			<axis>
+				<xyz>0 1 0</xyz>
+			</axis>
+		</joint>
+		<!--
+		<link name = "laser_sensor_link">
+			<gravity>true</gravity>
+			<inertial>
+				<mass>0.1</mass>
+			</inertial>
+			<visual name = "visual">
+				<pose>0.15 0 0.2 0 0 0</pose>
+				<geometry>
+					<mesh>
+						<uri>model://hokuyo/meshes/hokuyo.dae</uri>
+					</mesh>
+				</geometry>
+			</visual>
+			
+			<sensor name = "laser" type = "ray">
+				<pose>0.15 0 0.2 0 0 0 </pose>
+				<ray>
+					<scan>
+						<horizontal>
+							<sample>240</sample>
+							<resolution>1</resolution>
+							<min_angle>-2.26889</min_angle>
+							<max_angle> 2.26899</max_angle>
+						</horizontal>
+					</scan>
+					<range>
+						<min>0.08</min>
+						<max> 10 </max>
+						<resolution>0.01</resolution>
+					</range>
+					<noise>
+						<type>gaussian</type>
+						<mean>0.0</mean>
+						<stddev>0.1</stddev>
+					</noise>
+				</ray>
+				<plugin name = "laser" filename = "libRayPlugin.so"/>
+				<always_on>1</always_on>
+				<update_rate>30</update_rate>
+				<visualize>true</visualize>
+			</sensor>
+		</link>
+		
+		<joint type = "fixed" name = "hokuyo_joint" >
+			<pose>0.4 0.2 0.1 0 0 0</pose>
+			<child>laser_sensor_link</child>
+			<parent>chassis</parent>
+			<axis>
+				<xyz>0 1 0</xyz>
+			</axis>
+		</joint>
+		-->
+	</model>
+</sdf>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

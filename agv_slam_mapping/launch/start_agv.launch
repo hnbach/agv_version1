@@ -1,0 +1,38 @@
+<?xml version = "1.0"?>
+<launch>
+	<!-- rviz launch module -->
+	<!-- this module will launch the rviz with the configuration file in the agv_rviz package -->
+	<arg name="model_rviz" default="$(find agv_description)/urdf/agv_model.urdf"/>
+	<arg name="gui" default="true"/>
+	<param name="robot_description" textfile="$(arg model_rviz)"/>
+	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+	<node name="rviz" pkg = "rviz" type = "rviz" args="-d $(find agv_rviz)/config/agv.rviz"/>
+	
+	<!-- Gazebo launch module -->
+	<!-- this module will launch the Gazebo and spawn the agv model at position [-0.2 -0.5 0] -->
+	<arg name="model_gazebo" default="AGV "/>
+	<arg name="x_pos" default="-2.0"/>
+	<arg name="y_pos" default="-0.5"/>
+	<arg name="z_pos" default="0.0"/>
+	<include file = "$(find gazebo_ros)/launch/empty_world.launch">
+		<arg name = "world_name" value = "$(find agv_gazebo)/worlds/agv.world"/>
+    	<arg name= "paused" value="false"/>
+    	<arg name= "use_sim_time" value="true"/>
+    	<arg name= "gui" value="true"/>
+    	<arg name= "headless" value="false"/>
+    	<arg name= "debug" value="false"/>
+	</include>
+	<param name="robot_description" command="$(find xacro)/xacro.py $(find agv_description)/urdf/agv_model.xacro" />
+	<node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -model model_gazebo -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param robot_description" />
+	
+	<!-- SLAM GMAPPING launch module -->
+	<!-- this module will launch the slam gmapping and start making environment map -->
+	<node name="slam_mapping" pkg = "gmapping" type = "slam_gmapping" output="screen">
+		<remap from = "scan" to = "/sensor_msgs/LaserScan"/>
+		<param name = "base_link" value = "base_footprint"/>
+		<param name = "odom_frame" value = "odom"/>
+	</node>
+	<!-- note -->
+	<!-- run node "agv_keyboard_control" to start control the agv by keyboard -->
+</launch>
